@@ -35,9 +35,6 @@ export var EditPostModal = Vue.component('EditPostModal', {
 			})
 			this.$emit('edit')
 			this.msg = ""
-			this.post = ""
-			this.postCats = []
-			
 		},
 		refresh(){
 			this.categories = getCategories()
