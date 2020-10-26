@@ -1,0 +1,147 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body{
+	font-family: 'Poppins',Arial,sans-serif;
+	font-size: var(--font-size, $font-size);
+	padding-top: 50px;
+	background-color: var(--background, $background);
+}
+a{
+	-webkit-text-decoration-skip: objects;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+}
+button, input, select, textarea{
+	border: none;
+	outline: none;
+}
+
+
+
+
+[v-cloak] *{
+	display: none;
+}
+[v-cloak]::before{
+	content: '';
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	background: rgba(0,0,0,0.5);
+	z-index: 99;
+}
+[v-cloak]::after{
+	content: '';
+	width: 40px;
+	height: 40px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	border: 6px solid #fff;
+	border-right: 6px solid #121212;
+	border-radius: 50%;
+	transform: translate(-50%,-50%);
+	z-index: 9999;
+	animation: .5s tspin linear infinite;
+}
+@keyframes tspin{
+	0% {
+		transform: translate(-50%,-50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%,-50%) rotate(360deg);
+	}
+}
+
+
+.text-right{
+	text-align: right;
+}
+.text-center{
+	text-align: center;
+}
+.light-text{
+	color: var(--text-light);
+}
+.pb-3{
+	padding-bottom: 15px;
+}
+.mr-1{
+	margin-right: 5px;
+}
+.ml-1{
+	margin-left: 5px;
+}
+.mx-1{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.mx-2{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.green-bg{
+	background: var(--green);
+}
+
+
+.error-msg{
+	font-size: 0.8em;
+	color: var(--red);
+}
+
+
+.btn{
+			padding: 10px 15px;
+			font-size: 1em;
+			color: #fff;
+			display: inline-block;
+			font-weight: 500;
+			text-transform: uppercase;
+			background-color: var(--primary, $primary);
+			border-radius: 2px;
+			transition: background-color 0.3s;
+			text-shadow: get-shadow();
+			box-shadow: get-shadow();
+			&:hover{
+				background-color: var(--primary-dark, $primary);
+			}
+			&.block{
+				display: block;
+				width: 100%;
+			}
+}
+
+
+input, textarea, select{
+	display: block;
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	background-color: #E7E7E7;
+	padding: 10px 5px;
+	font-size: 1em;
+	color: #0E0E0E;
+	border-radius: 2px;
+	border-left: 5px solid #E7E7E7;
+	transition: border-left 0.15s;
+}
+textarea{
+	height: 120px;
+}
+
+
+.main{
+	padding: 15px 0;
+}
+
+.container{
+	padding: 0 $container-padding-lg;
+}

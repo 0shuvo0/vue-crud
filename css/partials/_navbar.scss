@@ -1,0 +1,94 @@
+.navbar{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	box-sizing: border-box;
+	height: 50px;
+	background-color: var(--dark, $dark);
+	height: 50px;
+	font-size: 1.2em;
+	font-weight: bold;
+	box-shadow: get-shadow();
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 9;
+	a{
+		color: var(--text, $text);
+		text-shadow: get-shadow();
+		span{
+			color: var(--primary, $primary);
+		}
+	}
+	.nav{
+		display: flex;
+		font-size: 0.8em;
+		.nav-link{
+			display: inline-block;
+			margin-left: 3vw;
+			font-weight: 500;
+			letter-spacing: 2px;
+			color: var(--text-light, $text-light);
+			&:after{
+				content: '';
+				display: block;
+				height: 2px;
+				width: 100%;
+				background-color: var(--text-light, $text-light);
+				transform: scaleX(0);
+				transition: transform var(--animation-speed, $animation-speed);
+			}
+			&.active{
+				color: var(--primary, $primary);
+			}
+			&.active:after{
+				background-color: var(--primary, $primary);
+			}
+			&:hover:after{
+				transform: scaleX(1);
+			}
+			
+		}
+	}
+	.toggle-btn{
+		display: none;
+		height: 25px;
+		width: 28px;
+		position: relative;
+		.bar{
+			position: absolute;
+			left: 0;
+			height: 4px;
+			width: 100%;
+			background-color: var(--text, $text);
+			border-radius: 5px;
+			transition: transform var(--animation-speed, $animation-speed), top var(--animation-speed, $animation-speed);
+			&.a{
+				transform: translate(5%, 0) scaleX(0.9) rotateZ(0);
+			}
+			&.b{
+				top: 50%;
+				transform: translate(10%, -50%) scaleX(0.8);
+			}
+			&.c{
+				top: 100%;
+				transform: translateY(-100%) rotateZ(0);
+			}
+		}
+		&.active{
+			.bar{
+				top: 50%;
+				transform-origin: center;
+				&.a{
+					transform: translate(0, -50%) scaleX(1) rotateZ(45deg);
+				}
+				&.b{
+					transform: translate(0, -50%) scaleX(0);
+				}
+				&.c{
+					transform: translateY(-50%) rotateZ(-45deg);
+				}
+			}
+		}
+	}
+}

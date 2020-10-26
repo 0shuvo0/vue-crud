@@ -1,0 +1,15 @@
+@media(max-width: $medium-screen-size){
+	.navbar{
+		.nav{
+			display: none;
+		}
+		.toggle-btn{
+			display: inline-block;
+		}
+	}
+}
+@media(max-width: $small-screen-size){
+	.container{
+		padding: 0 $container-padding-sm;
+	}
+}

@@ -1,0 +1,46 @@
+@import "partials/variables";
+@import "partials/reset";
+@import "partials/animations";
+
+
+@import "partials/navbar";
+@import "partials/side-menu";
+
+
+.card{
+	padding: 15px;
+	border-radius: 5px;
+	box-shadow: get-shadow();
+	&.inline{
+		padding: 5px;
+		display: inline-block;
+	}
+	.delete{
+		color: var(--red);
+	}
+	.categories{
+		font-size: 0.8em;
+		color: var(--text-light);
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		& .edit{
+			color: #2196F3;
+		}
+		&  .delete{
+			color: var(--red);
+		}
+	}
+}
+
+
+
+
+@import "partials/modal";
+
+
+
+
+
+
+@import "partials/mediaQueries";

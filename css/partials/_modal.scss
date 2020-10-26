@@ -1,0 +1,39 @@
+.modal{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: scale(0);
+	opacity: 0;
+}
+.modal .content{
+	width: 350px;
+	padding: 30px 25px;
+	background-color: #fff;
+	border-radius: 3px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	transform: scale(0);
+	opacity: 0;
+	transition: transform 0.3s, opacity 0.3s;
+}
+.modal .content h1{
+	font-size: 1.5em;
+	text-transform: capitalize;
+	margin-bottom: 15px;
+}
+.modal .footer .btn{
+	transform: scale(0.9) translateX(5%);
+}
+.modal .footer .btn.cancel{
+	background: #4CAF50;
+}
+.modal.active, .modal.active .content{
+	transform: scale(1);
+	opacity: 1;
+}

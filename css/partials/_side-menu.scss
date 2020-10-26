@@ -1,0 +1,48 @@
+.side-menu-wrapper{
+	width: 100vw;
+	height: 100vh;
+	background-color: transparent;
+	position: fixed;
+	top: 0;
+	left: -100%;
+	z-index: 99;
+	transition: left var(--animation-speed, $animation-speed);
+	.side-menu{
+		width: 240px;
+		height: 100%;
+		background-color: var(--background, $background);
+		box-shadow: get-shadow();
+		.menu-item{
+			border-left: 5px solid transparent;
+			display: block;
+			height: 45px;
+			line-height: 45px;
+			color: var(--text, $text);
+			padding: 0 20px;
+			background-color: rgba(0, 0, 0, 0);
+			transition: transform var(--animation-speed, $animation-speed);
+			transform: translateX(-100%);
+			&.active{
+				border-left: 5px solid var(--primary, $primary);
+			}
+			&:hover{
+				background-color: var(--shadow, $shadow);
+				border-left: 5px solid var(--primary, $primary);
+			}
+			i{
+				width: 25px;
+			}
+		}
+	}
+	&.active{
+		left: 0;
+		.side-menu{
+			@for $i from 1 through 5{
+				.menu-item:nth-child(#{$i}){
+					transition: transform var(--animation-speed, $animation-speed) (0.3s + ($i / 10));
+					transform: translateX(0);
+				}
+			}
+		}
+	}
+}

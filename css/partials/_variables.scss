@@ -1,0 +1,48 @@
+$font-size: 1rem;
+
+$container-padding-lg: 12vw;
+$container-padding-mid: 8vw;
+$container-padding-sm: 4vw;
+
+
+$small-screen-size: 450px;
+$medium-screen-size: 950px;
+
+
+$background: #fff;
+$dark: #fff;
+$light: #fff;
+$primary: #FF0056;
+$primary-dark: #E1004D;
+$text: #0A0A0A;
+$red: #F44336;
+$text-light: #575757;
+$shadow: rgba(0, 0, 0, 0.1);
+$shadow-dark: rgba(0, 0, 0, 0.1);
+
+$animation-speed: 0.3s;
+
+
+:root{
+	--font-size: $font-size;
+	
+	--background: #{$background};
+	--dark: #{$dark};
+	--light: #{$light};
+	--red: #{$red};
+	
+	--primary: #{$primary};
+	--primary-dark: #{$primary-dark};
+	
+	--text: #{$text};
+	--text-light: #{$text-light};
+	
+	--shadow: #{$shadow};
+	--shadow-dark: #{$shadow-dark};
+	
+	--animation-speed: #{$animation-speed};
+}
+
+@function get-shadow(){
+  @return 0 2px 5px var(--shadow-dark, $shadow-dark), 0 1px 2px var(--shadow-dark, $shadow-dark);
+}
