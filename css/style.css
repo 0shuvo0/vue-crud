@@ -343,6 +343,9 @@ textarea {
 .card .delete {
   color: var(--red);
 }
+.card .edit {
+  color: #2196F3;
+}
 .card .categories {
   font-size: 0.8em;
   color: var(--text-light);

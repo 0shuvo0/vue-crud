@@ -58,6 +58,14 @@ var addNewCategory = function(cat){
 	localStorage.setItem(localStorageKey + "categories", JSON.stringify([...prev, cat]));
 };
 
+var updateCategory = function(prev, cur){
+	var data = getCategories().map(function(c){
+		if(c == prev) return cur
+		return c
+	});
+	localStorage.setItem(localStorageKey + "categories", JSON.stringify(data));
+};
+
 var removeCategory = function(cat){
 	var cats = getCategories().filter(function(c){
 		return c != cat
@@ -337,11 +345,61 @@ var Homepage = Vue.component('home-page', {
 	`
 });
 
+var EditCategoryModal = Vue.component('EditCategoryModal', {
+	props: ['showCreateModal', 'cat'],
+	data(){
+		return {
+			category: '',
+			msg: ''
+		}
+		
+	},
+	mounted(){
+		this.category = this.cat;
+	},
+	watch: {
+		cat(){
+			this.category = this.cat;
+		}
+	},
+	methods: {
+		editCategory(){
+			if(!this.category.trim()){
+				this.msg = "Enter a category";
+				return
+			}
+			updateCategory(this.cat, this.category.trim());
+			this.msg = "";
+			this.category = "";
+			this.$emit('edit');
+		}
+	},
+	template: `
+		<div class="modal" :class="{active: showCreateModal}">
+			<div class="content">
+				<h1>Edit category</h1>
+				<input class="mx-2" type="text" placeholder="Enter new category" v-model="category">
+				<p class="error-msg">{{ msg }}</p>
+				<div class="footer text-right">
+					<button class="btn mr-1 cancel" @click="$emit('close')">
+						cancel
+					</button>
+					<button class="btn" @click="editCategory()">
+						create
+					</button>
+				</div>
+			</div>
+		</div>
+	`
+});
+
 var Categories = Vue.component('categories', {
 	data(){
 		return {
 			categories: [],
-			showCreateModal: false
+			showCreateModal: false,
+			showEditModal: false,
+			catToEdit: ""
 		}
 	},
 	mounted(){
@@ -351,10 +409,15 @@ var Categories = Vue.component('categories', {
 		refresh(){
 			this.categories = getCategories();
 			this.showCreateModal = false;
+			this.showEditModal = false;
 		},
 		remCat(cat){
 			removeCategory(cat);
 			this.categories = getCategories();
+		},
+		initEdit(cat){
+			this.catToEdit = cat;
+			this.showEditModal = true;
 		}
 	},
 	template: `
@@ -363,12 +426,12 @@ var Categories = Vue.component('categories', {
 			<button class="btn" @click="showCreateModal = true">add category</button>
 		</p>
 		<div class="card inline mr-1 mx-1" v-for="(category, index) in categories" :key="index">
-			{{ category }} <span class="delete ml-1" @click="remCat(category)">&times;</span>
+			{{ category }} <span class="edit ml-1 fas fa-pencil-alt" @click="initEdit(category)"></span><span class="delete ml-1 fas fa-trash" @click="remCat(category)"></span>
 		</div>
 		<h2 class="light-text text-center" v-if="categories.length < 1">No Categories Yet.</h2>
 		
 		<AddCategoryModal :showCreateModal="showCreateModal" @close="showCreateModal = false" @added="refresh()"></AddCategoryModal>
-		
+		<EditCategoryModal :showCreateModal="showEditModal" @close="showEditModal = false" :cat="catToEdit" @edit="refresh()"></EditCategoryModal>
 	</div>
 	`
 });

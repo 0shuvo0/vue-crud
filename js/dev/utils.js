@@ -15,6 +15,14 @@ export var addNewCategory = function(cat){
 	localStorage.setItem(localStorageKey + "categories", JSON.stringify([...prev, cat]))
 }
 
+export var updateCategory = function(prev, cur){
+	var data = getCategories().map(function(c){
+		if(c == prev) return cur
+		return c
+	})
+	localStorage.setItem(localStorageKey + "categories", JSON.stringify(data))
+}
+
 export var removeCategory = function(cat){
 	var cats = getCategories().filter(function(c){
 		return c != cat
