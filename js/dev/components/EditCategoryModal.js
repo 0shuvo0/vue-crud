@@ -40,7 +40,7 @@ export var EditCategoryModal = Vue.component('EditCategoryModal', {
 						cancel
 					</button>
 					<button class="btn" @click="editCategory()">
-						create
+						update
 					</button>
 				</div>
 			</div>
